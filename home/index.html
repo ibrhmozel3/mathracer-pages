@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Math Rally — Multiplication racing for kids</title>
+<meta name="description" content="Math Rally turns times-tables practice into an endless racing game. Answer fast, keep your streak, unlock cars. Free to play, safe for kids.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Math Rally — Multiplication racing for kids">
+<meta property="og:description" content="Answer fast, keep your streak, unlock cars. Times-tables practice that doesn't feel like homework.">
+<meta property="og:image" content="assets/icon.png">
+<meta property="og:type" content="website">
+
+<style>
+  :root{
+    --ink:#29314D; --ink-soft:#5A6280;
+    --card:#FFFCF5;
+    --blue:#4590F5; --blue-dark:#2B61BA;
+    --orange:#FFA829; --orange-dark:#D47A0D;
+    --green:#4FC95C; --green-dark:#33903D;
+    --pink:#F56B9E; --purple:#9469ED;
+    --bg:#F4F6FB;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.55;
+  }
+  a{color:var(--blue-dark); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px}
+
+  /* Nav */
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding-top:22px; padding-bottom:22px}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:19px; color:var(--ink)}
+  .brand img{width:36px; height:36px; border-radius:9px; box-shadow:0 3px 8px rgba(0,0,0,.15)}
+  nav .links a{color:var(--ink-soft); font-weight:600; font-size:15px; margin-left:26px}
+
+  /* Hero */
+  .hero{padding:36px 0 64px; text-align:center}
+  .hero img.icon{width:120px; height:120px; border-radius:28px; box-shadow:0 12px 28px rgba(41,49,77,.25); margin-bottom:26px}
+  .hero h1{font-size:44px; margin:0 0 14px; letter-spacing:-0.5px}
+  .hero h1 span{color:var(--blue-dark)}
+  .hero p.sub{font-size:19px; color:var(--ink-soft); max-width:520px; margin:0 auto 30px}
+  .badges{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:18px}
+  .badge{
+    display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:#fff;
+    padding:12px 22px; border-radius:14px; font-weight:700; font-size:15px;
+  }
+  .badge.soon{background:#fff; color:var(--ink); border:2px solid #E2E5EE}
+  .social-row{display:flex; gap:16px; justify-content:center; margin-top:8px}
+  .social-row a{
+    width:42px; height:42px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 3px 10px rgba(41,49,77,.12); font-weight:800; color:var(--ink);
+  }
+  .social-row a:hover{text-decoration:none; background:var(--blue); color:#fff}
+
+  /* Feature grid */
+  section{padding:54px 0}
+  h2.section-title{font-size:30px; text-align:center; margin:0 0 40px}
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+  .card{
+    background:var(--card); border-radius:20px; padding:26px 22px;
+    box-shadow:0 6px 18px rgba(41,49,77,.08);
+  }
+  .card .emoji{font-size:30px; display:block; margin-bottom:12px}
+  .card h3{margin:0 0 8px; font-size:17px}
+  .card p{margin:0; color:var(--ink-soft); font-size:14.5px}
+
+  /* Cars strip */
+  .cars-strip{
+    display:flex; justify-content:center; gap:26px; align-items:flex-end;
+    padding:20px 0 10px;
+  }
+  .cars-strip img{width:76px; filter:drop-shadow(0 10px 14px rgba(41,49,77,.2))}
+  .cars-strip img:nth-child(2){width:92px; transform:translateY(-8px)}
+
+  /* Screenshots */
+  .shot-row{display:flex; gap:18px; justify-content:center; flex-wrap:wrap}
+  .shot-frame{
+    width:200px; height:434px; border-radius:32px; background:#fff;
+    border:10px solid var(--ink); box-shadow:0 14px 30px rgba(41,49,77,.18);
+    overflow:hidden; position:relative;
+  }
+  .shot-frame img{width:100%; height:100%; object-fit:cover; display:block}
+  .shot-placeholder{
+    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+    text-align:center; color:var(--ink-soft); font-size:12.5px; padding:16px; background:
+      repeating-linear-gradient(45deg, #EEF0F6, #EEF0F6 10px, #E6E9F2 10px, #E6E9F2 20px);
+  }
+
+  /* Languages */
+  .lang-pills{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .lang-pills span{
+    background:#fff; padding:10px 18px; border-radius:999px; font-weight:700; font-size:14px;
+    box-shadow:0 3px 10px rgba(41,49,77,.08);
+  }
+
+  /* CTA band */
+  .cta{
+    background:linear-gradient(135deg, var(--blue), var(--purple));
+    border-radius:28px; padding:50px 30px; text-align:center; color:#fff;
+    margin:20px 0 0;
+  }
+  .cta h2{margin:0 0 12px; font-size:28px}
+  .cta p{margin:0 0 24px; opacity:.92; font-size:16px}
+  .cta .badge{background:#fff; color:var(--ink)}
+
+  footer{padding:40px 0 60px; text-align:center; color:var(--ink-soft); font-size:13.5px}
+  footer a{color:var(--ink-soft); text-decoration:underline}
+  footer .fine{margin-top:10px; opacity:.75}
+
+  @media (max-width:760px){
+    .grid{grid-template-columns:1fr}
+    .hero h1{font-size:32px}
+    nav .links{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav class="wrap">
+  <div class="brand"><img src="assets/icon.png" alt="Math Rally icon"> Math Rally</div>
+  <div class="links">
+    <a href="#features">Features</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#download">Download</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <img class="icon" src="assets/icon.png" alt="Math Rally app icon">
+  <h1>Times tables,<br><span>turned into a race.</span></h1>
+  <p class="sub">Answer multiplication questions fast, build a streak, and unlock new cars. Free to play, made for kids, no accounts and no tracking.</p>
+
+  <div class="badges">
+    <a class="badge" href="https://apps.apple.com/us/app/math-rally/id6798248862">📱 Download on the App Store</a>
+  </div>
+
+  <div class="social-row" aria-label="Follow Math Rally">
+    <a href="#" title="TikTok">TT</a>
+    <a href="#" title="Instagram">IG</a>
+    <a href="mailto:ibrhm.ozel3@gmail.com" title="Email">✉️</a>
+  </div>
+</header>
+
+<section id="features" class="wrap">
+  <h2 class="section-title">Why kids (and parents) like it</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="emoji">🏎️</span>
+      <h3>Endless racing</h3>
+      <p>Every correct answer pushes the car further. One wrong answer breaks the streak — so speed and accuracy both matter.</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🔥</span>
+      <h3>Streak multiplier</h3>
+      <p>Chain correct answers to multiply your score. Smart wrong-answer choices keep every round genuinely challenging.</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🎨</span>
+      <h3>Garage & customization</h3>
+      <p>Earn coins by playing, then spend them on new car models and paint colors in the Garage. Nothing costs real money.</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🎯</span>
+      <h3>Practice Mode</h3>
+      <p>Pick exactly which times tables to drill, and let a grown-up see which facts a child gets wrong most — hidden behind a simple parent check.</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🌍</span>
+      <h3>Three languages</h3>
+      <p>Fully playable in English, Turkish, and Spanish, switchable any time from the menu.</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🔒</span>
+      <h3>Kid-safe by design</h3>
+      <p>No accounts, no chat, no ads today, and no data collection of any kind. Everything stays on the device.</p>
+    </div>
+  </div>
+
+  <div class="cars-strip">
+    <img src="assets/car-yellow.png" alt="">
+    <img src="assets/car-red.png" alt="">
+    <img src="assets/car-blue.png" alt="">
+  </div>
+</section>
+
+<section id="screenshots" class="wrap">
+  <h2 class="section-title">A peek at the game</h2>
+  <div class="shot-row">
+    <div class="shot-frame"><div class="shot-placeholder">Menu screenshot<br>goes here</div></div>
+    <div class="shot-frame"><div class="shot-placeholder">Race screenshot<br>goes here</div></div>
+    <div class="shot-frame"><div class="shot-placeholder">Garage screenshot<br>goes here</div></div>
+    <div class="shot-frame"><div class="shot-placeholder">Practice Mode<br>screenshot goes here</div></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="section-title">Play in your language</h2>
+  <div class="lang-pills">
+    <span>🇬🇧 English</span>
+    <span>🇹🇷 Türkçe</span>
+    <span>🇪🇸 Español</span>
+  </div>
+</section>
+
+<section id="download" class="wrap">
+  <div class="cta">
+    <h2>Get ready to race</h2>
+    <p>Math Rally is out now, free to download.</p>
+    <a class="badge" href="https://apps.apple.com/us/app/math-rally/id6798248862">📱 Download on the App Store</a>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div>
+    <a href="../">Privacy Policy</a> &middot;
+    <a href="mailto:ibrhm.ozel3@gmail.com">Contact</a>
+  </div>
+  <div class="fine">© 2026 Siltician. Math Rally and all related assets are property of Siltician.</div>
+</footer>
+
+</body>
+</html>
